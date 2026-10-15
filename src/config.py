@@ -17,5 +17,7 @@ TEST_SIZE = 0.2
 LABEL_COL = "label"            # attack type: normal, dos, brute_force, port_scan, exfiltration
 BINARY_COL = "is_attack"       # 0 = normal, 1 = attack
 
+# Probability above which a flow raises an alert (try 0.3 / 0.5 / 0.7 / 0.9)
+ALERT_THRESHOLD = 0.5
 # Alert severity thresholds applied on attack probability
 SEVERITY_BANDS = [(0.90, "CRITICAL"), (0.75, "HIGH"), (0.50, "MEDIUM")]

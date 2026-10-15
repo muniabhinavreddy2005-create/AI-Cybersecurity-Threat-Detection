@@ -11,6 +11,7 @@ from src.config import OUTPUTS, LABEL_COL
 from src.data_loader import load_dataset
 from src.detect import generate_alerts, save_alerts
 from src.evaluate import cm, compare_models, report
+from src.threshold import sweep
 from src.simulate import save_simulated
 from src.train import train_all
 
@@ -40,6 +41,10 @@ def run(source, path):
     viz.model_comparison(results)
     viz.confusion_matrix_plot(cm(yb_test, rf_pred))
     viz.feature_importance(rf)
+    print("Threshold comparison (Random Forest):")
+    sw = sweep(rf, X_test, yb_test)
+    print(sw, "\n")
+    sw.to_csv(OUTPUTS / "reports" / "threshold_sweep.csv", index=False)
 
     print("[5/6] Generating alerts on the unseen test set ...")
     alerts = generate_alerts(rf, X_test, iforest=iforest)

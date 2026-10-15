@@ -1,6 +1,6 @@
 """Threat detection logic: turn model probabilities into SOC-style alerts."""
 import pandas as pd
-from src.config import OUTPUTS, SEVERITY_BANDS
+from src.config import ALERT_THRESHOLD, OUTPUTS, SEVERITY_BANDS
 
 
 def severity(prob: float) -> str:
@@ -11,7 +11,7 @@ def severity(prob: float) -> str:
 
 
 def generate_alerts(model, X: pd.DataFrame, meta: pd.DataFrame = None,
-                    iforest=None, threshold: float = 0.5) -> pd.DataFrame:
+                    iforest=None, threshold: float = ALERT_THRESHOLD) -> pd.DataFrame:
     """
     Score each flow and return only the suspicious ones, sorted by risk.
     meta: optional DataFrame (same index) holding flow_id / src_ip for context.
