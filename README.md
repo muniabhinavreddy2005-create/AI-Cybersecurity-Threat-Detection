@@ -75,3 +75,8 @@ Simulated data is simpler than real traffic; next steps: CICIDS2017/UNSW-NB15, s
 
 ## 📜 License
 MIT
+### Results explained
+- **Random Forest** was my best model: recall 0.989 means it caught about 99% of attacks, and precision 0.944 means about 94% of its alerts were real attacks.
+- **Logistic Regression** was close behind, which shows the simulated attacks are fairly separable.
+- **Isolation Forest** never saw attack labels, yet still caught 98.7% of attacks. Its precision was lower (0.692), so it raises more false alarms.
+- **Why not just accuracy?** About 88% of the traffic is normal, so accuracy alone can look high even for a weak detector. Recall and precision show how well attacks are actually found.
